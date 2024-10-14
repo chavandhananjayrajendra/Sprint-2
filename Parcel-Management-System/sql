@@ -1,0 +1,28 @@
+-- Create Users Table (Both Customers and Officers)
+CREATE TABLE Users (
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    username VARCHAR(20) NOT NULL UNIQUE,
+    password VARCHAR(30) NOT NULL,
+    email VARCHAR(50),
+    role VARCHAR(10), -- 'customer' or 'officer'
+    name VARCHAR(50),
+    address VARCHAR(100),
+    mobile_number VARCHAR(15)
+);
+
+-- Create Booking Table for Customer Bookings
+CREATE TABLE Bookings (
+    booking_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    user_id INT, -- foreign key to Users table
+    booking_details VARCHAR(255),
+    status VARCHAR(20), -- e.g. "Pending", "Completed"
+    FOREIGN KEY (user_id) REFERENCES Users(id)
+);
+
+-- Create Tracking Table for Parcel Tracking
+CREATE TABLE TrackingInfo (
+    tracking_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    booking_id INT, -- foreign key to Bookings table
+    tracking_status VARCHAR(100), -- "In transit", "Delivered", etc.
+    FOREIGN KEY (booking_id) REFERENCES Bookings(booking_id)
+);
