@@ -8,18 +8,7 @@
 <body>
     <h2>New Booking - Officer</h2>
     <form action="BookingServletOfficer" method="post">
-        <fieldset>
-            <legend>Sender Information</legend>
-            <label for="senderName">Sender Name:</label>
-            <input type="text" name="senderName" required><br>
-
-            <label for="senderAddress">Sender Address:</label>
-            <textarea name="senderAddress" required></textarea><br>
-
-            <label for="senderContact">Sender Contact:</label>
-            <input type="text" name="senderContact" required><br>
-        </fieldset>
-
+        
         <fieldset>
             <legend>Receiver Information</legend>
             <label for="recName">Receiver Name:</label>

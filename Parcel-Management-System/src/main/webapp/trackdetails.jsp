@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.Servlet.CustomerBooking" %>
+<%@ page import="com.Servlet.Booking" %>
 <html>
 <head>
-    <title>Customer Booking History</title>
+    <title>Track Status</title>
     <link rel="stylesheet" type="text/css" href="styles.css"> <!-- Link to your CSS file -->
     <style>
         table {
@@ -24,44 +24,39 @@
     </style>
 </head>
 <body>
-    <h2>Customer Booking History</h2>
-
+    <h2>Booking Tracking Status</h2>
     <table>
         <tr>
             <th>Booking ID</th>
             <th>Receiver Name</th>
             <th>Receiver Address</th>
             <th>Status</th>
-            <th>Service Cost</th>
             <th>Payment Time</th>
         </tr>
         <%
-            List<CustomerBooking> customerBookings = (List<CustomerBooking>) request.getAttribute("customerBookings");
-            if (customerBookings != null && !customerBookings.isEmpty()) {
-                for (CustomerBooking customerBooking : customerBookings) {
+            List<Booking> bookings = (List<Booking>) request.getAttribute("bookings");
+            if (bookings != null && !bookings.isEmpty()) {
+                for (Booking booking : bookings) {
         %>
         <tr>
-            <td><%= customerBooking.getBookingId() %></td>
-            <td><%= customerBooking.getReceiverName() %></td>
-            <td><%= customerBooking.getReceiverAddress() %></td>
-            <td><%= customerBooking.getStatus() %></td>
-            <td><%= customerBooking.getServiceCost() %></td>
-            <td><%= customerBooking.getPaymentTime() != null ? customerBooking.getPaymentTime().toString() : "N/A" %></td>
+            <td><%= booking.getId() %></td>
+            <td><%= booking.getReceiverName() %></td>
+            <td><%= booking.getReceiverAddress() %></td>
+            <td><%= booking.getStatus() %></td>
+            <td><%= booking.getPaymentTime() != null ? booking.getPaymentTime().toString() : "N/A" %></td>
         </tr>
         <%
                 }
             } else {
         %>
         <tr>
-            <td colspan="6">No booking history found.</td>
+            <td colspan="5">No booking details found.</td>
         </tr>
         <%
             }
         %>
     </table>
-
     <br>
-    <a href="customermenu.jsp">Back to Dashboard</a>
+    <a href="booking_customer.jsp">Back to Booking</a> <!-- Link to go back to the booking page -->
 </body>
 </html>
-

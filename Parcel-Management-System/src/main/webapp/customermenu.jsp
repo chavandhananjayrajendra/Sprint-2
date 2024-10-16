@@ -10,8 +10,13 @@
     <ul>
         <li><a href="booking_customer.jsp">Booking Service</a></li>
         <li><a href="tracking_status_customer.jsp">Track Parcel</a></li>
-        <li><a href="previousBookings.jsp">Previous Bookings</a></li>
+        <li><a href="PreviousBookingServlet">Previous Bookings</a></li>
+        <li><a href="generate_invoice.jsp">Generate Invoice</a></li>
+
         <li><a href="support.jsp">Contact Support</a></li>
+        
+        
+        
         <li><a href="LogoutServlet">Logout</a></li>
     </ul>
 </body>

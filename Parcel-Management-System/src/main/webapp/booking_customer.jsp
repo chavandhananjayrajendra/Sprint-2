@@ -10,13 +10,13 @@
         <fieldset>
             <legend>Sender Information (Auto-filled)</legend>
             <label for="senderName">Your Name:</label>
-            <input type="text" name="senderName" value="${sessionScope.username}" readonly><br>
+            <input type="text" name="senderName" value="${sessionScope.name}" readonly><br>
 
             <label for="senderAddress">Your Address:</label>
             <textarea name="senderAddress" readonly>${sessionScope.address}</textarea><br>
 
             <label for="senderContact">Contact:</label>
-            <input type="text" name="senderContact" value="${sessionScope.contact}" readonly><br>
+            <input type="text" name="senderContact" value="${sessionScope.mobile_number}" readonly><br>
         </fieldset>
 
         <fieldset>
