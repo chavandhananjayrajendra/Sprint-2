@@ -13,12 +13,8 @@
         Address: <input type="text" name="address"><br>
         Username: <input type="text" name="username"><br>
         Password: <input type="password" name="password"><br>
-        Role: 
-        <select name="role">
-            <option value="customer">Customer</option>
-            <option value="officer">Officer</option>
-        </select><br>
         <input type="submit" value="Register">
     </form>
 </body>
 </html>
+  

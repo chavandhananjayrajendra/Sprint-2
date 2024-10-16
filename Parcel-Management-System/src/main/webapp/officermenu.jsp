@@ -14,10 +14,12 @@
     <hr>
     <ul>
         <li><a href="officermenu.jsp">Home</a></li>
-        <li><a href="trackingStatus.jsp">Tracking</a></li>
+                <li><a href="booking_officer.jsp">Booking</a></li>
+        
+        <li><a href="trackingStatusofficer.jsp">Tracking</a></li>
         <li><a href="delivery_status.jsp">Delivery Status</a></li>
-        <li><a href="pickup_drop_update.jsp">Pickup Scheduling</a></li>
-        <li><a href="previous_booking.jsp">Previous Booking</a></li>
+        <li><a href="pickupDropUpdate.jsp">Pickup Scheduling</a></li>
+        <li><a href="bookingHistoryOfficer.jsp">Previous Booking</a></li>
         <li><a href="logoutServlet">Logout</a></li>
     </ul>
 </body>

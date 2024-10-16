@@ -1,39 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="jakarta.servlet.http.HttpSession" %>
-<%@ page import="java.sql.*" %>
+<%@ page import="com.Servlet.StatusDetails" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delivery Status</title>
-    <link rel="stylesheet" type="text/css" href="styles.css"> <!-- Link to your CSS -->
+    <title>Delivery Status Update</title>
 </head>
 <body>
-    <h1>Delivery Status</h1>
-    <form action="DeliveryStatusServlet" method="post">
-        <label for="bookingId">Enter Booking ID:</label>
-        <input type="text" id="bookingId" name="bookingId" required>
-        <input type="submit" value="Check Status">
-    </form>
 
-    <hr>
-    <h2>Update Delivery Status</h2>
+<h2>Delivery Status Update</h2>
+
+<!-- Form for entering Booking ID -->
+<form action="DeliveryStatusUpdateServlet" method="post">
+    <label for="bookingId">Booking ID:</label>
+    <input type="text" id="bookingId" name="bookingId" required>
+    <button type="submit">Fetch Details</button>
+</form>
+
+<%
+    // Retrieve success or error messages if they exist
+    String successMessage = (String) request.getAttribute("successMessage");
+    String errorMessage = (String) request.getAttribute("errorMessage");
+    if (successMessage != null && !successMessage.isEmpty()) {
+%>
+    <p style="color: green;"><%= successMessage %></p>
+<%
+    } 
+    if (errorMessage != null && !errorMessage.isEmpty()) {
+%>
+    <p style="color: red;"><%= errorMessage %></p>
+<%
+    }
+
+    // Retrieve the statusDetails from the request
+    StatusDetails statusDetails = (StatusDetails) request.getAttribute("statusDetails");
+    if (statusDetails != null) {
+%>
+    <h3>Booking Details:</h3>
     <form action="DeliveryStatusUpdateServlet" method="post">
-        <label for="updateBookingId">Booking ID:</label>
-        <input type="text" id="updateBookingId" name="updateBookingId" required>
+        <input type="hidden" name="bookingId" value="<%= statusDetails.getBookingId() %>">
 
-        <label for="deliveryStatus">Select Status:</label>
-        <select id="deliveryStatus" name="deliveryStatus">
+        <p>Full Name: <%= statusDetails.getFullName() %></p>
+        <p>Address: <%= statusDetails.getAddress() %></p>
+        <p>Receiver Name: <%= statusDetails.getRecName() %></p>
+        <p>Receiver Address: <%= statusDetails.getRecAddress() %></p>
+        <p>Current Status: <%= statusDetails.getParStatus() %></p>
+        
+        <label for="newStatus">Update Status:</label>
+        <select id="newStatus" name="newStatus" required>
+            <option value="">Select Status</option>
             <option value="Booked">Booked</option>
             <option value="In Transit">In Transit</option>
             <option value="Delivered">Delivered</option>
             <option value="Returned">Returned</option>
         </select>
-        <input type="submit" value="Update Status">
+        <button type="submit">Update Status</button>
     </form>
+<%
+    } else {
+%>
+    <p>No booking details found for the given Booking ID.</p>
+<%
+    }
+%>
 
-    <hr>
-    <a href="officerMenu.jsp">Back to Menu</a>
 </body>
 </html>

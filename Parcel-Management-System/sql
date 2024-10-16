@@ -4,7 +4,6 @@ CREATE TABLE Users (
     username VARCHAR(20) NOT NULL UNIQUE,
     password VARCHAR(30) NOT NULL,
     email VARCHAR(50),
-    role VARCHAR(10), -- 'customer' or 'officer'
     name VARCHAR(50),
     address VARCHAR(100),
     mobile_number VARCHAR(15)
@@ -12,13 +11,22 @@ CREATE TABLE Users (
 
 -- Create Booking Table for Customer Bookings
 CREATE TABLE Bookings (
-    booking_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    user_id INT, -- foreign key to Users table
-    booking_details VARCHAR(255),
-    status VARCHAR(20), -- e.g. "Pending", "Completed"
-    FOREIGN KEY (user_id) REFERENCES Users(id)
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    user_id INT REFERENCES Users(id),
+    rec_name VARCHAR(100),
+    rec_address VARCHAR(255),
+    rec_pin VARCHAR(10),
+    rec_mobile VARCHAR(20),
+    par_weight_gram INT,
+    par_contents_description VARCHAR(255),
+    par_delivery_type VARCHAR(50),
+    par_packing_preference VARCHAR(50),
+    par_pickup_time TIMESTAMP,
+    par_dropoff_time TIMESTAMP,
+    par_service_cost DECIMAL(10, 2),
+    par_payment_time TIMESTAMP,
+    par_status VARCHAR(50)
 );
-
 -- Create Tracking Table for Parcel Tracking
 CREATE TABLE TrackingInfo (
     tracking_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -26,3 +34,23 @@ CREATE TABLE TrackingInfo (
     tracking_status VARCHAR(100), -- "In transit", "Delivered", etc.
     FOREIGN KEY (booking_id) REFERENCES Bookings(booking_id)
 );
+select * from BOOKINGS
+
+
+CREATE TABLE TrackingInfo (
+    booking_id INT REFERENCES Bookings(id),
+    tracking_status VARCHAR(50)
+);
+
+
+CREATE TABLE ContactSupport (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    message VARCHAR(500),
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+select * from CONTACTSUPPORT;
+truncate table CONTACTSUPPORT
+
